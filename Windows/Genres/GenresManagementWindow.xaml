@@ -1,0 +1,40 @@
+﻿<Window x:Class="LibraryManager.Windows.Genres.GenresManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="Управление жанрами" Height="450" Width="700"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Панель кнопок -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <Button Content="Добавить жанр" Click="AddGenre_Click" Width="140" Margin="0,0,10,0" />
+            <Button Content="Редактировать" Click="EditGenre_Click" Width="140" Margin="0,0,10,0" />
+            <Button Content="Удалить" Click="DeleteGenre_Click" Width="140" />
+        </StackPanel>
+
+        <!-- DataGrid жанров -->
+        <DataGrid x:Name="GenresDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="200" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*" />
+                <DataGridTextColumn Header="Книг" Binding="{Binding Books.Count}" Width="60" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Нижняя панель (кол-во, закрыть) -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <TextBlock Text="{Binding ElementName=GenresDataGrid, Path=Items.Count, StringFormat='Жанров: {0}'}"
+                       VerticalAlignment="Center" Margin="0,0,20,0" />
+            <Button Content="Закрыть" Click="Close_Click" Width="100" />
+        </StackPanel>
+    </Grid>
+</Window>

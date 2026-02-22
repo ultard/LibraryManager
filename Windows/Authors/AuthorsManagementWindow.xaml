@@ -1,0 +1,43 @@
+﻿<Window x:Class="LibraryManager.Windows.Authors.AuthorsManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="Управление авторами" Height="450" Width="700"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Панель кнопок -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <Button Content="Добавить автора" Click="AddAuthor_Click" Width="140" Margin="0,0,10,0" />
+            <Button Content="Редактировать" Click="EditAuthor_Click" Width="140" Margin="0,0,10,0" />
+            <Button Content="Удалить" Click="DeleteAuthor_Click" Width="140" />
+        </StackPanel>
+
+        <!-- DataGrid авторов -->
+        <DataGrid x:Name="AuthorsDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="140" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="160" />
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding BirthDate, StringFormat=dd.MM.yyyy}"
+                                    Width="130" />
+                <DataGridTextColumn Header="Страна" Binding="{Binding Country}" Width="150" />
+                <DataGridTextColumn Header="Книг" Binding="{Binding Books.Count}" Width="60" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Нижняя панель (кол-во, закрыть) -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <TextBlock Text="{Binding ElementName=AuthorsDataGrid, Path=Items.Count, StringFormat='Авторов: {0}'}"
+                       VerticalAlignment="Center" Margin="0,0,20,0" />
+            <Button Content="Закрыть" Click="Close_Click" Width="100" />
+        </StackPanel>
+    </Grid>
+</Window>
