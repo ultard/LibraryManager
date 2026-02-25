@@ -32,7 +32,7 @@ jobs:
         run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
 
       - name: Publish WPF app
-        run: dotnet publish LibraryManager/LibraryManager.csproj
+        run: dotnet publish LibraryManager.csproj
           --configuration Release
           --runtime win-x64
           --self-contained false
