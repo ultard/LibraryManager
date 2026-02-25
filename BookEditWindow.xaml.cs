@@ -36,7 +36,7 @@ public partial class BookEditWindow
             MessageBox.Show("Введите название книги!", "Ошибка", 
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             TitleTextBox.Focus();
-            return false;
+            return;
         }
         
         _book.Title = TitleTextBox.Text; 
@@ -46,7 +46,7 @@ public partial class BookEditWindow
             MessageBox.Show("Введите ISBN!", "Ошибка", 
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             ISBNTextBox.Focus();
-            return false;
+            return;
         }
 
         var isbnClean = ISBNTextBox.Text.Trim().Replace("-", "").Replace(" ", "");
@@ -59,7 +59,7 @@ public partial class BookEditWindow
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             ISBNTextBox.Focus();
             ISBNTextBox.SelectAll();
-            return false;
+            return;
         }
 
         _book.ISBN = isbnClean;
@@ -83,7 +83,7 @@ public partial class BookEditWindow
             MessageBox.Show("Введите корректное количество (0 или больше)!", "Ошибка", 
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             QuantityTextBox.Focus();
-            return false;
+            return;
         }
         
         _book.QuantityInStock = quantity;
@@ -94,7 +94,7 @@ public partial class BookEditWindow
             MessageBox.Show("Введите корректный год издания (1965 - текущий год)!", "Ошибка", 
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             PublishYearTextBox.Focus();
-            return false;
+            return;
         }
         
         _book.PublishYear = year;
